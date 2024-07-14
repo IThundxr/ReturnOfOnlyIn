@@ -2,6 +2,7 @@ package dev.ithundxr.returnofonlyin.services;
 
 import cpw.mods.modlauncher.serviceapi.ILaunchPluginService;
 import net.neoforged.fml.loading.FMLLoader;
+import org.jetbrains.annotations.ApiStatus;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.ClassNode;
@@ -13,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+@ApiStatus.Internal
 public class ClientOnlyLaunchPluginService implements ILaunchPluginService {
     private static final EnumSet<Phase> YES = EnumSet.of(Phase.AFTER);
     private static final EnumSet<Phase> NO = EnumSet.noneOf(Phase.class);

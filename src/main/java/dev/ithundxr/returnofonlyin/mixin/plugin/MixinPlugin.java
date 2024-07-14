@@ -5,6 +5,7 @@ import cpw.mods.modlauncher.Launcher;
 import cpw.mods.modlauncher.serviceapi.ILaunchPluginService;
 import dev.ithundxr.returnofonlyin.internal.Variables;
 import dev.ithundxr.returnofonlyin.services.ClientOnlyLaunchPluginService;
+import org.jetbrains.annotations.ApiStatus;
 import org.objectweb.asm.tree.ClassNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+@ApiStatus.Internal
 public class MixinPlugin implements IMixinConfigPlugin {
     private static final Logger LOGGER = LoggerFactory.getLogger(MixinPlugin.class);
 
