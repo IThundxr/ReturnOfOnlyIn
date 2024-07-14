@@ -6,7 +6,9 @@ plugins {
     id 'net.neoforged.moddev' version '1.0.0'
 }
 
-version = mod_version
+String runNumber = System.getenv("GITHUB_RUN_NUMBER")
+String build = runNumber != null ? "build.$runNumber" : "local"
+version = "$mod_version-$build"
 group = mod_group_id
 
 repositories {
