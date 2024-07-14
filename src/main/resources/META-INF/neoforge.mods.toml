@@ -1,0 +1,22 @@
+modLoader="lowcodefml"
+loaderVersion="${loader_version_range}"
+license="LGPLv3"
+
+[[mods]]
+modId="returnofonlyin"
+version="${mod_version}"
+displayName="Return Of OnlyIn"
+authors="IThundxr"
+
+
+description='''Returns @OnlyIn in the form of @ClientOnly'''
+
+[[mixins]]
+config="returnofonlyin.mixins.json"
+
+[[dependencies.returnofonlyin]]
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
+    ordering="NONE"
+    side="BOTH"
