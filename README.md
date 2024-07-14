@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
     ...
-    jarJar(group: "dev.ithundxr.returnofonlyin", name: "ReturnOfOnlyIn", version: "[1.0.0-build.4,]")
+    jarJar(group: "dev.ithundxr.returnofonlyin", name: "ReturnOfOnlyIn", version: "[1.0.0-build.5,]")
 }
 ```
 

@@ -10,9 +10,8 @@ import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.MethodNode;
 
 import java.util.EnumSet;
-import java.util.LinkedHashMap;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 @ApiStatus.Internal
 public class ClientOnlyLaunchPluginService implements ILaunchPluginService {
@@ -54,43 +53,32 @@ public class ClientOnlyLaunchPluginService implements ILaunchPluginService {
     }
     
     public static void processClassNode(ClassNode classNode) {
-        Map<Integer, FieldNode> fieldNodeMap = new LinkedHashMap<>();
-        Map<Integer, MethodNode> methodNodeMap = new LinkedHashMap<>();
+        for (Iterator<FieldNode> it = classNode.fields.iterator(); it.hasNext();) {
+            FieldNode fieldNode = it.next();
 
-        int fieldNodeNumber = 0;
-        for (FieldNode fieldNode : classNode.fields) {
-            fieldNodeMap.put(fieldNodeNumber, fieldNode);
-            fieldNodeNumber++;
-        }
-
-        int methodNodeNumber = 0;
-        for (MethodNode methodNode : classNode.methods) {
-            methodNodeMap.put(methodNodeNumber, methodNode);
-            methodNodeNumber++;
-        }
-
-        fieldNodeMap.forEach(((i, fieldNode) -> {
             List<AnnotationNode> annotationNodes = fieldNode.visibleAnnotations;
 
             if (annotationNodes != null) {
                 for (AnnotationNode annotationNode : annotationNodes) {
                     if (annotationNode.desc.equals("Ldev/ithundxr/returnofonlyin/annotation/ClientOnly;") && FMLLoader.getDist().isDedicatedServer()) {
-                        classNode.fields.remove(i.intValue());
+                        it.remove();
                     }
                 }
             }
-        }));
+        }
 
-        methodNodeMap.forEach(((i, methodNode) -> {
+        for (Iterator<MethodNode> it = classNode.methods.iterator(); it.hasNext();) {
+            MethodNode methodNode = it.next();
+
             List<AnnotationNode> annotationNodes = methodNode.visibleAnnotations;
 
             if (annotationNodes != null) {
                 for (AnnotationNode annotationNode : annotationNodes) {
                     if (annotationNode.desc.equals("Ldev/ithundxr/returnofonlyin/annotation/ClientOnly;") && FMLLoader.getDist().isDedicatedServer()) {
-                        classNode.methods.remove(i.intValue());
+                        it.remove();
                     }
                 }
             }
-        }));
+        }
     }
 }
