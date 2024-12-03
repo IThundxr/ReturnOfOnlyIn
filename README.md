@@ -7,7 +7,7 @@ jarJar.enable()
 
 repositories {
     ...
-    maven { url "https://maven.ithundxr.dev/snapshots" }
+    maven { url "https://mvn.devos.one/snapshots" }
 }
 
 dependencies {
